@@ -8,15 +8,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
-import axios from 'axios'
-
-const getData = (() => {    
-  axios
-    .get('https://jsonplaceholder.typicode.com/users')
-    .then((res) => console.log(res.data))
-    .catch((e) => console.log(e)
-    );
-});
+import {getSelectedData} from './../functions/getData'
 
 export default defineComponent({
   name: 'Forskolor',
@@ -27,7 +19,9 @@ export default defineComponent({
     const test = ref('Cristian')
 
     onMounted(() => {
-      getData();
+      getSelectedData().then((response) => {
+        console.log(response)
+      });
     })
     return {
       test
