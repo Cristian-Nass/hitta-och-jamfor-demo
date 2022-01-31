@@ -3,8 +3,15 @@
     <h1>{{ msg }}</h1>
   </div>
     <div style="display: flex; justify-content: space-evenly; ">
-    <router-link to="/forskolor"><div class="selected-skol">Forskolor</div></router-link>
+    <router-link to="/forskolor"><div class="selected-skol">Forskolor och familjedaghem</div></router-link>
     <router-link to="/grundskolor"><div class="selected-skol">Grundskolor</div></router-link>
+  </div>
+  <div>
+    <h1></h1>
+  </div>
+    <div style="display: flex; justify-content: space-evenly; ">
+    <router-link to="/gymnasieskolor"><div class="selected-skol">Gymnasieskolor</div></router-link>
+    <router-link to="/vardOchOmsorgsboenden"><div class="selected-skol">Vård och omsorgsboenden</div></router-link>
   </div>
 </template>
 
@@ -21,5 +28,19 @@ export default defineComponent({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+ .selected-skol{
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   font-size: 20px;
+   text-align: center;
+   padding-top: 20px;
+   width: 30vw;
+   height: 100px;
+   background-color: darkgreen;
+   color: seashell;
+ }
+
+ a {
+   text-decoration: none;
+ }
 
 </style>

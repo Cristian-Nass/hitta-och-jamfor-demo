@@ -10,20 +10,22 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/forskolor",
     name: "Forskolor",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Forskolor.vue"),
+    component: () => import("../views/Forskolor.vue"),
   },
   {
     path: "/grundskolor",
     name: "Grundskolor",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Grundskolor.vue"),
+    component: () => import("../views/Grundskolor.vue"),
+  },
+  {
+    path: "/gymnasieskolor",
+    name: "Gymnasieskolor",
+    component: () => import("../views/Gymnasieskolor.vue"),
+  },
+  {
+    path: "/vardOchOmsorgsboenden",
+    name: "VardOchOmsorgsboenden",
+    component: () => import("../views/VardOchOmsorgsboenden.vue"),
   },
 ];
 

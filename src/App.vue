@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-    <router-link to="/">Back</router-link>
+    <router-link to="/" class="back-to-home">Back</router-link>
   </div>
   <router-view/>
   <!-- <div style="display: flex; justify-content: space-evenly; ">
@@ -10,16 +10,10 @@
 </template>
 
 <style>
- .selected-skol{
-   text-align: center;
-   padding-top: 20px;
-   width: 30vw;
-   height: 100px;
-   background-color: salmon;
-   color: seashell;
- }
-
- a {
-   text-decoration: none;
- }
+.back-to-home {
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 18px;
+}
 </style>
