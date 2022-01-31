@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    <StartComponent msg="Hitta och Jämför"/>
+    <SchoolSelector msg="Hitta och Jämför"/>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import StartComponent from '@/components/StartComponent.vue';
+import SchoolSelector from '@/components/SchoolSelector.vue';
 
 export default defineComponent({
   name: 'Home',
   components: {
-    StartComponent,
+    SchoolSelector,
   },
 });
 </script>

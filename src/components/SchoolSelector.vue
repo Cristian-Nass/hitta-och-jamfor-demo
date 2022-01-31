@@ -12,7 +12,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'StartComponent',
+  name: 'SchoolSelector',
   props: {
     msg: String,
   },
