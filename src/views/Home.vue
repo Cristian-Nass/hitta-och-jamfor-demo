@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <StartComponent msg="Hitta och Jämför"/>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import StartComponent from '@/components/StartComponent.vue';
 
 export default defineComponent({
   name: 'Home',
   components: {
-    HelloWorld,
+    StartComponent,
   },
 });
 </script>

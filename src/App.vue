@@ -1,13 +1,12 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/forskolor">Forskolor</router-link>
+    <router-link to="/">Back</router-link>
   </div>
   <router-view/>
-  <div style="display: flex; justify-content: space-evenly; ">
+  <!-- <div style="display: flex; justify-content: space-evenly; ">
     <router-link to="/forskolor"><div class="selected-skol">Forskolor</div></router-link>
     <div class="selected-skol">Grundskolor</div>
-  </div>
+  </div> -->
 </template>
 
 <style>
