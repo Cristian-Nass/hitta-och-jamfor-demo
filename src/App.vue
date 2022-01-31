@@ -1,30 +1,26 @@
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/forskolor">Forskolor</router-link>
   </div>
   <router-view/>
+  <div style="display: flex; justify-content: space-evenly; ">
+    <router-link to="/forskolor"><div class="selected-skol">Forskolor</div></router-link>
+    <div class="selected-skol">Grundskolor</div>
+  </div>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+ .selected-skol{
+   text-align: center;
+   padding-top: 20px;
+   width: 30vw;
+   height: 100px;
+   background-color: salmon;
+   color: seashell;
+ }
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+ a {
+   text-decoration: none;
+ }
 </style>
