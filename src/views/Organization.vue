@@ -39,7 +39,7 @@ export default defineComponent({
     
 
     onMounted(() => {
-      getSelectedSchoolData().then(response => response)
+      getSelectedSchoolData('users').then(response => response)
         .then(data => {
           data.forEach(element => {
             schoolsState.data.push(element)
