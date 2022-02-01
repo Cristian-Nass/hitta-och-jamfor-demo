@@ -4,7 +4,7 @@
     <h1>{{test}}</h1>
     <!-- <h1>{{testData}}</h1> -->
     <ul id="example-1">
-    <li v-for="item in testData" :key="item.id">
+    <li v-for="item in schoolsData" :key="item.id">
       {{ item.name }} - {{ item.username }} - {{ item.email }}
     </li>
   </ul>
@@ -28,7 +28,8 @@ export default defineComponent({
   setup() {
 
     const test = ref('Cristian')
-    const state: Schools = reactive({
+    
+    const schoolsState: Schools = reactive({
       data: [],
     });
 
@@ -36,19 +37,19 @@ export default defineComponent({
       getSelectedData().then(response => response)
         .then(data => {
           data.forEach(element => {
-            state.data.push(element)
+            schoolsState.data.push(element)
           });
         });
     })
 
-    const testData = computed(() => {
-      return state.data;
+    const schoolsData = computed(() => {
+      return schoolsState.data;
     })
 
-    console.log(testData);
+    console.log(schoolsData);
     
     return {
-      test, testData
+      test, schoolsData
     }
   }
 });
