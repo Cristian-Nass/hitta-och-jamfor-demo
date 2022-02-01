@@ -72,4 +72,22 @@ export default defineComponent({
    margin: 10px;
    padding: 10px;
  }
+
+ @media only screen and (max-width: 1100px) {
+  .main-div {
+   grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+ @media only screen and (max-width: 800px) {
+  .main-div {
+   grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 552px) {
+  .main-div {
+   grid-template-columns: 1fr;
+  }
+}
 </style>
