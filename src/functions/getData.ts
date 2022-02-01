@@ -24,7 +24,7 @@ export interface School {
   };
 }
 
-export const getSelectedData = async (): Promise<School[]> => {
+export const getSelectedSchoolData = async (): Promise<School[]> => {
   return axios
     .get("https://jsonplaceholder.typicode.com/users")
     .then((response) => {

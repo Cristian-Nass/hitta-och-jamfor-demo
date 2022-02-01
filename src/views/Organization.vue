@@ -1,6 +1,6 @@
 <template>
   <div class="forskolor">
-    <h1>Förskolor</h1>
+    <h1>{{organization}}</h1>
     <h1>{{test}}</h1>
     <!-- <h1>{{testData}}</h1> -->
     <div class="main-div">
@@ -16,27 +16,30 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref,reactive, computed } from 'vue';
-import {getSelectedData} from './../functions/getData'
-import {School} from './../functions/getData'
+import { useRoute } from 'vue-router';
+import {getSelectedSchoolData} from '../functions/getData'
+import {School} from '../functions/getData'
 
 interface Schools {
   data: School[];
 }
 
 export default defineComponent({
-  name: 'Forskolor',
+  name: 'Organization',
   components: {
   },
   setup() {
-
     const test = ref('Cristian')
-
+    const route = useRoute();
+    const organization = ref(route.params).value.organization;
     const schoolsState: Schools = reactive({
       data: [],
     });
 
+    
+
     onMounted(() => {
-      getSelectedData().then(response => response)
+      getSelectedSchoolData().then(response => response)
         .then(data => {
           data.forEach(element => {
             schoolsState.data.push(element)
@@ -48,10 +51,10 @@ export default defineComponent({
       return schoolsState.data;
     })
 
-    console.log(schoolsData);
+    // console.log(schoolsData);
     
     return {
-      test, schoolsData
+      test, schoolsData, organization
     }
   }
 });

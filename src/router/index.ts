@@ -8,25 +8,25 @@ const routes: Array<RouteRecordRaw> = [
     component: Home,
   },
   {
-    path: "/forskolor",
-    name: "Forskolor",
-    component: () => import("../views/Forskolor.vue"),
+    path: "/:organization",
+    name: "Organization",
+    component: () => import("../views/Organization.vue"),
   },
-  {
-    path: "/grundskolor",
-    name: "Grundskolor",
-    component: () => import("../views/Grundskolor.vue"),
-  },
-  {
-    path: "/gymnasieskolor",
-    name: "Gymnasieskolor",
-    component: () => import("../views/Gymnasieskolor.vue"),
-  },
-  {
-    path: "/vardOchOmsorgsboenden",
-    name: "VardOchOmsorgsboenden",
-    component: () => import("../views/VardOchOmsorgsboenden.vue"),
-  },
+  // {
+  //   path: "/grundskolor",
+  //   name: "Grundskolor",
+  //   component: () => import("../views/Forskolor.vue"),
+  // },
+  // {
+  //   path: "/gymnasieskolor",
+  //   name: "Gymnasieskolor",
+  //   component: () => import("../views/Forskolor.vue"),
+  // },
+  // {
+  //   path: "/vardOchOmsorgsboenden",
+  //   name: "VardOchOmsorgsboenden",
+  //   component: () => import("../views/Forskolor.vue"),
+  // },
 ];
 
 const router = createRouter({
