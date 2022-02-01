@@ -1,6 +1,6 @@
 import axios from "axios";
 
-interface School {
+export interface School {
   id: number;
   name: string;
   username: string;
