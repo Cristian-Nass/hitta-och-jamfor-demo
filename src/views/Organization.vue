@@ -1,5 +1,6 @@
 <template>
-  <ListOfData />
+  <!-- <ListOfDataTiley /> -->
+  <ListOfDataLinear />
 </template>
 
 <script lang="ts">
@@ -7,12 +8,14 @@ import { defineComponent, onMounted, ref, computed, Ref } from "vue";
 import { useRoute } from "vue-router";
 import { getSchoolsData } from "../functions/getData";
 import { SchoolsEntites } from "../functions/getData";
-import ListOfData from "./../components/ListOfData.vue"
+// import ListOfDataTiley from "./../components/ListOfDataTiley.vue"
+import ListOfDataLinear from "./../components/ListOfDataLinear.vue"
 
 export default defineComponent({
   name: "Organization",
   components: {
-    ListOfData,
+    // ListOfDataTiley,
+    ListOfDataLinear
   },
   setup() {
     const route = useRoute();
