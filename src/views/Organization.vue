@@ -1,13 +1,11 @@
 <template>
   <div class="forskolor">
     <h1>{{organization}}</h1>
-    <h1>{{test}}</h1>
-    <!-- <h1>{{testData}}</h1> -->
     <div class="main-div">
       <div class="child-div" v-for="item in schoolsData" :key="item.id">
-        <div>{{ item.name }}</div>
-        <div>{{ item.username }}</div>
-        <div>{{ item.email }}</div>
+        <div>{{ item.Name }}</div>
+        <div>{{ item.Area }}</div>
+        <div>{{ item.Regi }}</div>
       </div>
   </div>
   </div>
@@ -15,46 +13,39 @@
 
 
 <script lang="ts">
-import { defineComponent, onMounted, ref,reactive, computed } from 'vue';
+import { defineComponent, onMounted, ref,reactive, computed,Ref } from 'vue';
 import { useRoute } from 'vue-router';
-import {getSelectedSchoolData} from '../functions/getData'
-import {School} from '../functions/getData'
+import {getSchoolsData} from '../functions/getData'
+import {Schools, SchoolsEntites} from '../functions/getData'
 
-interface Schools {
-  data: School[];
-}
 
 export default defineComponent({
   name: 'Organization',
   components: {
   },
   setup() {
-    const test = ref('Cristian')
     const route = useRoute();
     const organization = ref(route.params).value.organization;
-    const schoolsState: Schools = reactive({
-      data: [],
-    });
+    const schoolsState: Ref<SchoolsEntites[]> = ref([]);
 
     
 
     onMounted(() => {
-      getSelectedSchoolData('users').then(response => response)
-        .then(data => {
-          data.forEach(element => {
-            schoolsState.data.push(element)
-          });
-        });
+      getSchoolsData().then(response => response)
+      .then(data => {
+        data.entites.forEach((res) => {
+          console.log(res);
+          schoolsState.value.push(res)
+          
+        })
+      });   
     })
 
     const schoolsData = computed(() => {
-      return schoolsState.data;
+      return schoolsState.value;
     })
-
-    // console.log(schoolsData);
-    
     return {
-      test, schoolsData, organization
+      organization, schoolsData
     }
   }
 });

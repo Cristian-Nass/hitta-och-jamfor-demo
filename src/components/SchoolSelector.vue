@@ -1,61 +1,58 @@
 <template>
-  <div>
-    <h1>{{ msg }}</h1>
-  </div>
-    <div style="display: flex; justify-content: space-evenly; ">
-    <router-link to="/forskolor"><div class="selected-skol" id="pre-school"></div></router-link>
-    <router-link to="/grundskolor"><div class="selected-skol" id="elementry-school"></div></router-link>
-  </div>
-  <div>
-    <h1></h1>
-  </div>
-    <div style="display: flex; justify-content: space-evenly; ">
-    <router-link to="/gymnasieskolor"><div class="selected-skol" id="high-school"></div></router-link>
-    <router-link to="/vardOchOmsorgsboenden"><div class="selected-skol" id="care-center"></div></router-link>
+  <div class="organisation-style">
+    <div v-for="(organisation, index) in organizations" :key="index">
+      <router-link :to="`/${organisation}`">
+        <div class="selected-skol">{{organisation}}</div>
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref, Ref } from "vue";
 
 export default defineComponent({
-  name: 'SchoolSelector',
+  name: "SchoolSelector",
   props: {
     msg: String,
+  },
+  setup() {
+    const organizations: Ref<string[]> = ref(['forskolor', 'grundskolor', 'gymnasieskolor', 'vardOchOmsorgsboenden']);
+    console.log(organizations.value);
+    
+    return {
+      organizations: organizations.value,
+    };
   },
 });
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
-  .selected-skol{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-align: center;
-    width: 520px;
-    min-height: 320px;
-    background-color: darkgreen;
-    color: seashell;
-    background-repeat: no-repeat;
-  }
+.organisation-style {
+  width: 100%;
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: 1fr 1fr;
+  align-content: center;
+  align-items: center;
+  gap: 1rem;
+}
 
-  a {
-    text-decoration: none;
-  }
+.selected-skol {
+  margin: auto;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  width: 520px;
+  min-height: 320px;
+  background-color: darkgreen;
+  color: seashell;
+  background-repeat: no-repeat;
+}
 
-  #pre-school{
-    background-image: url('./../assets/images/pre-school.jpg');
-  }
+a {
+  text-decoration: none;
+}
 
-  #elementry-school{
-    background-image: url('./../assets/images/elementry-school.jpg');
-  }
-
-  #high-school{
-    background-image: url('./../assets/images/high-school.jpg');
-  }
-
-  #care-center{
-    background-image: url('./../assets/images/care-center.jpg');
-  }
-  
 </style>
+

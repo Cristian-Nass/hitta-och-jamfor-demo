@@ -12,21 +12,6 @@ const routes: Array<RouteRecordRaw> = [
     name: "Organization",
     component: () => import("../views/Organization.vue"),
   },
-  // {
-  //   path: "/grundskolor",
-  //   name: "Grundskolor",
-  //   component: () => import("../views/Forskolor.vue"),
-  // },
-  // {
-  //   path: "/gymnasieskolor",
-  //   name: "Gymnasieskolor",
-  //   component: () => import("../views/Forskolor.vue"),
-  // },
-  // {
-  //   path: "/vardOchOmsorgsboenden",
-  //   name: "VardOchOmsorgsboenden",
-  //   component: () => import("../views/Forskolor.vue"),
-  // },
 ];
 
 const router = createRouter({

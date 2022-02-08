@@ -1,34 +1,31 @@
 import axios from "axios";
 
-export interface School {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  address: {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode: string;
-    geo: {
-      lat: string;
-      lng: string;
-    };
-  };
-  phone: string;
-  website: string;
-  company: {
-    name: string;
-    catchPhrase: string;
-    bs: string;
-  };
+export interface Schools {
+  Header: string;
+  IngressText: string;
+  FilterOptions: string;
+  ShortName: string;
+  entites: SchoolsEntites[];
 }
 
-export const getSelectedSchoolData = async (
-  selected: string
-): Promise<School[]> => {
+export interface SchoolsEntites {
+  Name: string;
+  PhoneNumber: number;
+  VisitationAddress: string;
+  PostalAddress: string;
+  Latitude: number;
+  Longditude: number;
+  Area: string;
+  Regi: string;
+  Inriktning: string;
+  attributes: null;
+}
+
+export const getSchoolsData = async (): Promise<Schools> => {
   return axios
-    .get("https://jsonplaceholder.typicode.com/" + selected)
+    .get(
+      "https://gist.githubusercontent.com/Cristian-Nass/2536c0f4dbbbef9c310a6c79c2513805/raw/69e4cbdfc015e8fae429a4947b31f2f165ef4fdc/schools.json"
+    )
     .then((response) => {
       return response.data;
     })
