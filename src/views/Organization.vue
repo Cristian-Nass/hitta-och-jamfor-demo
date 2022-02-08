@@ -1,6 +1,9 @@
 <template>
-  <!-- <ListOfDataTiley /> -->
-  <ListOfDataLinear />
+<div class="selected-view">
+  <button @click="setSelectComponent('ListOfDataTiley')">Tile</button>
+  <button @click="setSelectComponent('ListOfDataLinear')">List</button>
+</div>
+  <component :is="selectComponent" />
 </template>
 
 <script lang="ts">
@@ -8,19 +11,20 @@ import { defineComponent, onMounted, ref, computed, Ref } from "vue";
 import { useRoute } from "vue-router";
 import { getSchoolsData } from "../functions/getData";
 import { SchoolsEntites } from "../functions/getData";
-// import ListOfDataTiley from "./../components/ListOfDataTiley.vue"
+import ListOfDataTiley from "./../components/ListOfDataTiley.vue"
 import ListOfDataLinear from "./../components/ListOfDataLinear.vue"
 
 export default defineComponent({
   name: "Organization",
   components: {
-    // ListOfDataTiley,
+    ListOfDataTiley,
     ListOfDataLinear
   },
   setup() {
     const route = useRoute();
     const organization = ref(route.params).value.organization;
     const schoolsState: Ref<SchoolsEntites[]> = ref([]);
+    const selectComponent = ref('ListOfDataTiley')
 
     onMounted(() => {
       getSchoolsData()
@@ -35,9 +39,18 @@ export default defineComponent({
     const schoolsData = computed(() => {
       return schoolsState.value;
     });
+
+    const setSelectComponent = (component: string) => {
+      selectComponent.value = component;
+      console.log(component);
+      
+    }
+
     return {
       organization,
       schoolsData,
+      selectComponent,
+      setSelectComponent
     };
   },
 });
@@ -58,16 +71,9 @@ export default defineComponent({
   margin: 10px;
   padding: 10px
 }
-.grid {
-  padding: 0;
-  margin: 0;
-}
-
-.p-card {
-  box-shadow: none;
-}
-
-.p-button {
+.selected-view {
+  width: 100;
+  direction: rtl;
 }
 
 @media only screen and (max-width: 1200px) {
