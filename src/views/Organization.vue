@@ -1,49 +1,18 @@
 <template>
-  <!-- <div class="forskolor">
-    <h1>{{organization}}</h1>
-    <div class="main-div">
-      <div class="child-div" v-for="item in schoolsData" :key="item.id">
-        <div>{{ item.Name }}</div>
-        <div>{{ item.Area }}</div>
-        <div>{{ item.Regi }}</div>
-      </div>
-  </div>
-  </div> -->
-
-  <div class="main-div">
-    <div class="child-grid" v-for="item in schoolsData" :key="item.id">
-      <Card>
-        <template #header class="mb-0">
-          <img alt="user header" src="../assets/images/school.jpg" />
-        </template>
-        <template #title>{{ item.Name }}</template>
-        <template #subtitle>
-          {{ item.Area }}
-        </template>
-        <template #footer>
-          <Button icon="pi pi-check" label="Spara" />
-        </template>
-      </Card>
-    </div>
-  </div>
+  <ListOfData />
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, reactive, computed, Ref } from "vue";
+import { defineComponent, onMounted, ref, computed, Ref } from "vue";
 import { useRoute } from "vue-router";
 import { getSchoolsData } from "../functions/getData";
-import { Schools, SchoolsEntites } from "../functions/getData";
-
-import Button from "primevue/button";
-// import InputText from 'primevue/inputtext'
-// import MultiSelect from 'primevue/multiselect';
-import Card from "primevue/card";
+import { SchoolsEntites } from "../functions/getData";
+import ListOfData from "./../components/ListOfData.vue"
 
 export default defineComponent({
   name: "Organization",
   components: {
-    Card,
-    Button,
+    ListOfData,
   },
   setup() {
     const route = useRoute();
@@ -55,7 +24,6 @@ export default defineComponent({
         .then((response) => response)
         .then((data) => {
           data.entites.forEach((res) => {
-            console.log(res);
             schoolsState.value.push(res);
           });
         });

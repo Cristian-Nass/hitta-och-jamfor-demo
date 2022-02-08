@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const getDataUrl =
-  "https://gist.githubusercontent.com/Cristian-Nass/2536c0f4dbbbef9c310a6c79c2513805/raw/69e4cbdfc015e8fae429a4947b31f2f165ef4fdc/schools.json";
+  "https://gist.githubusercontent.com/Cristian-Nass/2536c0f4dbbbef9c310a6c79c2513805/raw/4df202b7db13fa79e1d3424d8dc1348433d4b902/schools.json";
 
 export interface Schools {
   Header: string;
