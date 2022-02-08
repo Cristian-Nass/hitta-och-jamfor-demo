@@ -1,5 +1,8 @@
 import axios from "axios";
 
+const getDataUrl =
+  "https://gist.githubusercontent.com/Cristian-Nass/2536c0f4dbbbef9c310a6c79c2513805/raw/69e4cbdfc015e8fae429a4947b31f2f165ef4fdc/schools.json";
+
 export interface Schools {
   Header: string;
   IngressText: string;
@@ -23,9 +26,7 @@ export interface SchoolsEntites {
 
 export const getSchoolsData = async (): Promise<Schools> => {
   return axios
-    .get(
-      "https://gist.githubusercontent.com/Cristian-Nass/2536c0f4dbbbef9c310a6c79c2513805/raw/69e4cbdfc015e8fae429a4947b31f2f165ef4fdc/schools.json"
-    )
+    .get(getDataUrl)
     .then((response) => {
       return response.data;
     })
