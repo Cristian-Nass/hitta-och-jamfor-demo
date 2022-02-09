@@ -36,9 +36,6 @@ export default defineComponent({
           schoolsState.value.push(res);
         });
       });
-
-      console.log('TEST COMPUTTED');
-      
     });
 
     const schoolsData = computed(() => {
