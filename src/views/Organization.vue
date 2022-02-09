@@ -7,62 +7,59 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref,Ref,computed, onMounted} from "vue";
-import { useRoute } from "vue-router";
-import ListOfDataTiley from "./../components/ListOfDataTiley.vue"
-import ListOfDataLinear from "./../components/ListOfDataLinear.vue"
-import { getSchoolsData } from "./../functions/getData";
-import { SchoolsEntites } from "./../functions/getData";
+import {defineComponent, ref, Ref, computed, onMounted} from 'vue';
+import {useRoute} from 'vue-router';
+import ListOfDataTiley from './../components/ListOfDataTiley.vue';
+import ListOfDataLinear from './../components/ListOfDataLinear.vue';
+import {getSchoolsData} from './../functions/getData';
+import {SchoolsEntites} from './../functions/getData';
 
 export default defineComponent({
-  name: "Organization",
+  name: 'Organization',
   components: {
     ListOfDataTiley,
-    ListOfDataLinear
+    ListOfDataLinear,
   },
-  
+
   setup() {
     const route = useRoute();
     const organization = ref(route.params).value.organization;
-    const selectComponent = ref('ListOfDataTiley')
-    const propsTest = ref('Hitta och Jamför')
+    const selectComponent = ref('ListOfDataTiley');
+    const propsTest = ref('Hitta och Jamför');
     const schoolsState: Ref<SchoolsEntites[]> = ref([]);
 
     onMounted(() => {
       getSchoolsData()
-      .then((response) => response)
-      .then((data) => {
-        data.entites.forEach((res) => {
-          schoolsState.value.push(res);
+        .then((response) => response)
+        .then((data) => {
+          data.entites.forEach((res) => {
+            schoolsState.value.push(res);
+          });
         });
-      });
     });
 
     const schoolsData = computed(() => {
       return schoolsState.value;
     });
 
-
     const setSelectComponent = (component: string) => {
       selectComponent.value = component;
-    }
+    };
 
     return {
       organization,
       selectComponent,
       setSelectComponent,
       propsTest,
-      schoolsData
+      schoolsData,
     };
   },
 });
 </script>
 
 <style scoped>
-
-  .selected-view {
-    width: 100;
-    direction: rtl;
-  }
-
+.selected-view {
+  width: 100;
+  direction: rtl;
+}
 </style>
