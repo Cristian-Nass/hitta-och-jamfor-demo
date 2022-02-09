@@ -18,6 +18,7 @@ export default defineComponent({
     ListOfDataTiley,
     ListOfDataLinear
   },
+  
   setup() {
     const route = useRoute();
     const organization = ref(route.params).value.organization;
