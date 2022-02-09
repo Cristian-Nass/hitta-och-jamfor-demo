@@ -1,4 +1,5 @@
 <template>
+  <div>{{myName}}</div>
     <div class="parent-grid-div" v-for="school in schoolsData" :key="school.id">
       <div class="child-grid-div">
         <img :src="school.Picture" />
@@ -11,31 +12,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, computed, Ref } from "vue";
-import { getSchoolsData } from "../functions/getData";
-import { SchoolsEntites } from "../functions/getData";
+import {defineComponent, ref} from "vue";
 
 export default defineComponent({
+  props: ['dataSchools'],
   components: {},
   name: "ListOfDataLinear",
-  setup() {
-    const schoolsState: Ref<SchoolsEntites[]> = ref([]);
+  setup(props) {
+    const schoolsData = ref(props.dataSchools)
 
-    onMounted(() => {
-      getSchoolsData()
-        .then((response) => response)
-        .then((data) => {
-          data.entites.forEach((res) => {
-            schoolsState.value.push(res);
-          });
-        });
-    });
-
-    const schoolsData = computed(() => {
-      return schoolsState.value;
-    });
-
-    return {
+   return {
       schoolsData,
     };
   },

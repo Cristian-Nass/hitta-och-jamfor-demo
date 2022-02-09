@@ -1,16 +1,18 @@
 <template>
-<div class="selected-view">
-  <button @click="setSelectComponent('ListOfDataTiley')">Tile</button>
-  <button @click="setSelectComponent('ListOfDataLinear')">List</button>
-</div>
-  <component :is="selectComponent" />
+  <div class="selected-view">
+    <button @click="setSelectComponent('ListOfDataTiley')">Tile</button>
+    <button @click="setSelectComponent('ListOfDataLinear')">List</button>
+  </div>
+  <component :is="selectComponent" :dataSchools="schoolsData" />
 </template>
 
 <script lang="ts">
-import { defineComponent, ref} from "vue";
+import { defineComponent, ref,Ref,computed, onMounted} from "vue";
 import { useRoute } from "vue-router";
 import ListOfDataTiley from "./../components/ListOfDataTiley.vue"
 import ListOfDataLinear from "./../components/ListOfDataLinear.vue"
+import { getSchoolsData } from "./../functions/getData";
+import { SchoolsEntites } from "./../functions/getData";
 
 export default defineComponent({
   name: "Organization",
@@ -23,16 +25,37 @@ export default defineComponent({
     const route = useRoute();
     const organization = ref(route.params).value.organization;
     const selectComponent = ref('ListOfDataTiley')
+    const propsTest = ref('Hitta och Jamför')
+    const schoolsState: Ref<SchoolsEntites[]> = ref([]);
+
+    onMounted(() => {
+      getSchoolsData()
+      .then((response) => response)
+      .then((data) => {
+        data.entites.forEach((res) => {
+          schoolsState.value.push(res);
+        });
+      });
+
+      console.log('TEST COMPUTTED');
+      
+    });
+
+    const schoolsData = computed(() => {
+      return schoolsState.value;
+    });
+
 
     const setSelectComponent = (component: string) => {
       selectComponent.value = component;
-      console.log(component);
     }
 
     return {
       organization,
       selectComponent,
-      setSelectComponent
+      setSelectComponent,
+      propsTest,
+      schoolsData
     };
   },
 });

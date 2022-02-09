@@ -18,7 +18,6 @@ export default defineComponent({
   },
   setup() {
     const organizations: Ref<string[]> = ref(['forskolor', 'grundskolor', 'gymnasieskolor', 'vardOchOmsorgsboenden']);
-    console.log(organizations.value);
     
     return {
       organizations: organizations.value,
