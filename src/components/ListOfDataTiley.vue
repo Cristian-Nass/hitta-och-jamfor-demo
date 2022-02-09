@@ -15,7 +15,7 @@ import { SchoolsEntites } from "../functions/getData";
 
 export default defineComponent({
   components: {},
-  name: "ListOfData",
+  name: "ListOfDataTiley",
   setup() {
     const schoolsState: Ref<SchoolsEntites[]> = ref([]);
 
@@ -24,6 +24,7 @@ export default defineComponent({
         .then((response) => response)
         .then((data) => {
           data.entites.forEach((res) => {
+            console.log(res)
             schoolsState.value.push(res);
           });
         });
@@ -58,5 +59,30 @@ export default defineComponent({
   width: 100%;
   height: auto;
   }
+
+  
+@media only screen and (max-width: 1200px) {
+  .parent-grid-div {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .parent-grid-div {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .parent-grid-div {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .parent-grid-div {
+    grid-template-columns: 1fr;
+  }
+}
 
 </style>

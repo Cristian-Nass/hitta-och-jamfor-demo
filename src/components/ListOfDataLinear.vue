@@ -17,7 +17,7 @@ import { SchoolsEntites } from "../functions/getData";
 
 export default defineComponent({
   components: {},
-  name: "ListOfData",
+  name: "ListOfDataLinear",
   setup() {
     const schoolsState: Ref<SchoolsEntites[]> = ref([]);
 
