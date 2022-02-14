@@ -5,7 +5,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
+import { useRouter} from 'vue-router'
 import SchoolSelector from '@/components/SchoolSelector.vue';
 
 export default defineComponent({
@@ -13,5 +14,14 @@ export default defineComponent({
   components: {
     SchoolSelector,
   },
+  setup() {
+
+    const router = useRouter();
+    const selectedSchools = ref('gymnaseskolor');
+
+    // onMounted(() => {
+    //   router.push(`/${selectedSchools.value}/hitta-och-jamfor`)
+    // })
+  }
 });
 </script>

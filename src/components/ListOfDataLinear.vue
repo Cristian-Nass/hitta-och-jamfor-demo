@@ -1,11 +1,10 @@
 <template>
-  <div>{{myName}}</div>
     <div class="parent-grid-div" v-for="school in schoolsData" :key="school.id">
-      <div class="child-grid-div">
+      <div class="child-grid-div" id="image-div">
         <img :src="school.Picture" />
       </div>
       <div class="child-grid-div">
-        <div>{{ school.Name }}</div>
+        <div style="padding-top: 10px">{{ school.Name }}</div>
         <div>{{ school.Area }}</div>
       </div>
     </div>
@@ -30,6 +29,7 @@ export default defineComponent({
 
 <style scoped>
   .parent-grid-div {
+    padding: 4px 0;
     display: grid;
     grid-template-columns: 1fr 4fr;
     max-width: 1400px;
@@ -38,13 +38,22 @@ export default defineComponent({
 
   .child-grid-div {
     background-color: bisque;
-    margin: 6px;
-    padding: 6px;
+    width: 100%;
+    padding: 4px;
   }
 
   img {
-  width: 100%;
-  height: auto;
+    background-color: bisque;
+    width: 100%;
+    height: auto;
   }
 
+  @media only screen and (max-width: 480px) {
+    .parent-grid-div {
+      display: block;
+    }
+    #image-div {
+      display:none
+    }
+  }
 </style>

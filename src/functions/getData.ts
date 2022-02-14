@@ -28,7 +28,6 @@ export const getSchoolsData = async (): Promise<Schools> => {
   return axios
     .get(getDataUrl)
     .then((response) => {
-      console.log('Read Data');
       return response.data;
     })
     .catch((e) => {

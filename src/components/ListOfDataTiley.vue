@@ -1,5 +1,4 @@
 <template>
-  <div>{{ myName }}</div>
   <div class="parent-grid-div">
     <div class="child-grid-div" v-for="school in schoolsData" :key="school.id">
       <img :src="school.Picture" />
