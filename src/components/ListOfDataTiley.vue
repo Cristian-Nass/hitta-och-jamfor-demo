@@ -14,20 +14,20 @@ import {defineComponent,PropType, ref, computed} from 'vue';
 import {SchoolsEntites} from '@/functions/getData';
 
 export default defineComponent({
-  props: ['dataSchools', 'filterInput'],
-  /*
+  // props: ['dataSchools', 'filterInput'],
+  
   props: {
     dataSchools: Array as PropType<Array<SchoolsEntites>>,
     filterInput: String 
   },
-  */
+  
   components: {},
   name: 'ListOfDataTiley',
   setup(props) {
 
   const schoolsData = computed(() => 
     props.filterInput
-      ? ref(props.dataSchools).value?.filter((f: any) => f.Name.toLocaleLowerCase().includes(props.filterInput))
+      ? ref(props.dataSchools).value?.filter((f: any) => f.Name.toLowerCase().includes(props.filterInput?.toLowerCase()))
       : ref(props.dataSchools).value
   )
 
