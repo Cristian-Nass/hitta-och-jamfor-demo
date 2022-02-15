@@ -1,8 +1,8 @@
 <template>
   <input type="text" v-model="searchValue" />
   <div class="selected-view">
-    <button @click="setSelectComponent('ListOfDataTiley')">Tile</button>
-    <button @click="setSelectComponent('ListOfDataLinear')">List</button>
+    <!-- <button @click="setSelectComponent('ListOfDataTiley')">Tile</button> -->
+    <!-- <button @click="setSelectComponent()">List</button> -->
   </div>
   <component :is="selectComponent" :dataSchools="schoolsData" />
 </template>
@@ -29,6 +29,7 @@ export default defineComponent({
     const propsTest = ref('Hitta och Jamför');
     const schoolsState: Ref<SchoolsEntites[]> = ref([]);
     const searchValue = ref('')
+    const listView = ref (false);
 
     onMounted(() => {
       getSchoolsData()
@@ -43,8 +44,9 @@ export default defineComponent({
     const schoolsData = computed(() => schoolsState.value
       .filter((f) => f.Name.toLowerCase().includes(searchValue.value.toLowerCase())));
 
-    const setSelectComponent = (component: string) => {
-      selectComponent.value = component;
+    const setSelectComponent = () => {
+      selectComponent.value = listView.value ? 'ListOfDataTiley' : 'ListOfDataLinear'
+      listView.value = !listView.value
     };
 
     return {
@@ -53,7 +55,8 @@ export default defineComponent({
       setSelectComponent,
       propsTest,
       schoolsData,
-      searchValue
+      searchValue,
+      listView
     };
   },
 });
