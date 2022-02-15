@@ -1,9 +1,11 @@
 <template>
+  <input type="text" v-model="inputValue" />
+  
   <div class="selected-view">
     <button @click="setSelectComponent('ListOfDataTiley')">Tile</button>
     <button @click="setSelectComponent('ListOfDataLinear')">List</button>
   </div>
-  <component :is="selectComponent" :dataSchools="schoolsData" />
+  <component :is="selectComponent" :dataSchools="schoolsData" :filterInput="inputValue" />
 </template>
 
 <script lang="ts">
@@ -27,6 +29,7 @@ export default defineComponent({
     const selectComponent = ref('ListOfDataTiley');
     const propsTest = ref('Hitta och Jamför');
     const schoolsState: Ref<SchoolsEntites[]> = ref([]);
+    const inputValue = ref('')
 
     onMounted(() => {
       getSchoolsData()
@@ -39,12 +42,22 @@ export default defineComponent({
     });
 
     const schoolsData = computed(() => {
-      return schoolsState.value;
+      return schoolsState.value
     });
+
+
+      //  const schoolsData = computed(() => schoolsState.value.filter((data) => 
+      //   data.Name.includes(inputValue.value.toLowerCase())));
 
     const setSelectComponent = (component: string) => {
       selectComponent.value = component;
     };
+
+    // const inputValue = computed(() =>  {
+    //   // console.log(searchFilterTerm.value);
+    //   return searchFilterTerm.value
+    // })
+    
 
     return {
       organization,
@@ -52,6 +65,7 @@ export default defineComponent({
       setSelectComponent,
       propsTest,
       schoolsData,
+      inputValue
     };
   },
 });

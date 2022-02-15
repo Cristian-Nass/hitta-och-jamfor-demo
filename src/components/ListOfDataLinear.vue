@@ -14,7 +14,7 @@
 import {defineComponent, ref} from "vue";
 
 export default defineComponent({
-  props: ['dataSchools'],
+  props: ['dataSchools', 'filterInput'],
   components: {},
   name: "ListOfDataLinear",
   setup(props) {
