@@ -1,5 +1,4 @@
 <template>
-  <div>{{filterInput}}</div>
   <div class="parent-grid-div">
     <div class="child-grid-div" v-for="school in schoolsData" :key="school.id">
       <img :src="school.Picture" />
@@ -10,30 +9,20 @@
 </template>
 
 <script lang="ts">
-import {defineComponent,PropType, ref, computed} from 'vue';
+import {defineComponent, PropType, computed} from 'vue';
 import {SchoolsEntites} from '@/functions/getData';
 
 export default defineComponent({
-  // props: ['dataSchools', 'filterInput'],
   
   props: {
-    dataSchools: Array as PropType<Array<SchoolsEntites>>,
-    filterInput: String 
+    dataSchools: Array as PropType<SchoolsEntites[]>,
   },
   
   components: {},
   name: 'ListOfDataTiley',
   setup(props) {
 
-  const schoolsData = computed(() => 
-    props.filterInput
-      ? ref(props.dataSchools).value?.filter((f: any) => f.Name.toLowerCase().includes(props.filterInput?.toLowerCase()))
-      : ref(props.dataSchools).value
-  )
-
-    // const schoolsData = props.filterInput
-    //   ? ref(props.dataSchools).value?.filter((f: any) => f.Name.toLocaleLowerCase().includes(props.filterInput))
-    //   : ref(props.dataSchools).value
+    const schoolsData = computed(() => props.dataSchools)
 
     return {
       schoolsData,

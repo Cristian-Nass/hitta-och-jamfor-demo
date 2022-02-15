@@ -1,20 +1,19 @@
 <template>
-  <input type="text" v-model="inputValue" />
-  
+  <input type="text" v-model="searchValue" />
   <div class="selected-view">
     <button @click="setSelectComponent('ListOfDataTiley')">Tile</button>
     <button @click="setSelectComponent('ListOfDataLinear')">List</button>
   </div>
-  <component :is="selectComponent" :dataSchools="schoolsData" :filterInput="inputValue" />
+  <component :is="selectComponent" :dataSchools="schoolsData" />
 </template>
 
 <script lang="ts">
 import {defineComponent, ref, Ref, computed, onMounted} from 'vue';
 import {useRoute} from 'vue-router';
-import ListOfDataTiley from './../components/ListOfDataTiley.vue';
-import ListOfDataLinear from './../components/ListOfDataLinear.vue';
-import {getSchoolsData} from './../functions/getData';
-import {SchoolsEntites} from './../functions/getData';
+import ListOfDataTiley from '@/components/ListOfDataTiley.vue';
+import ListOfDataLinear from '@/components/ListOfDataLinear.vue';
+import {getSchoolsData} from '@/functions/getData';
+import {SchoolsEntites} from '@/functions/getData';
 
 export default defineComponent({
   name: 'Organization',
@@ -29,7 +28,7 @@ export default defineComponent({
     const selectComponent = ref('ListOfDataTiley');
     const propsTest = ref('Hitta och Jamför');
     const schoolsState: Ref<SchoolsEntites[]> = ref([]);
-    const inputValue = ref('')
+    const searchValue = ref('')
 
     onMounted(() => {
       getSchoolsData()
@@ -41,23 +40,12 @@ export default defineComponent({
         });
     });
 
-    const schoolsData = computed(() => {
-      return schoolsState.value
-    });
-
-
-      //  const schoolsData = computed(() => schoolsState.value.filter((data) => 
-      //   data.Name.includes(inputValue.value.toLowerCase())));
+    const schoolsData = computed(() => schoolsState.value
+      .filter((f) => f.Name.toLowerCase().includes(searchValue.value.toLowerCase())));
 
     const setSelectComponent = (component: string) => {
       selectComponent.value = component;
     };
-
-    // const inputValue = computed(() =>  {
-    //   // console.log(searchFilterTerm.value);
-    //   return searchFilterTerm.value
-    // })
-    
 
     return {
       organization,
@@ -65,7 +53,7 @@ export default defineComponent({
       setSelectComponent,
       propsTest,
       schoolsData,
-      inputValue
+      searchValue
     };
   },
 });
