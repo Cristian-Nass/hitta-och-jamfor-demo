@@ -12,12 +12,7 @@ const routes: Array<RouteRecordRaw> = [
     path: "/:dynamik/hitta-och-jamfor",
     name: "HittaOchJamfor",
     component: HittaOchJamfor,
-  },
-  {
-    path: "/:organization",
-    name: "Organization",
-    component: () => import("../views/Organization.vue"),
-  },
+  }
 ];
 
 const router = createRouter({
