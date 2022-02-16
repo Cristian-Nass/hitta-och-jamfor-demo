@@ -1,15 +1,32 @@
 <template>
-  <div class="parent-grid-div">
+  <!-- <div class="parent-grid-div">
     <div class="child-grid-div" v-for="school in schoolsData" :key="school.id">
       <img :src="school.Picture" />
       <div>{{ school.Name }}</div>
       <div>{{ school.Area }}</div>
     </div>
+  </div> -->
+
+  <div id="app">
+    {{Math.ceil(totalRows/perPage)}}
+  <div class="myList">
+    <div v-for="list in lists" :key="list.id">
+    {{ list.Name }}
   </div>
+  <button v-for="item in Math.ceil(totalRows/perPage)" :key="item" @click="setCurrentPage(item)">{{item}}</button>
+
+  
+  <!-- <b-pagination
+     :total-rows="totalRows" 
+     v-model="currentPage"
+     :per-page="perPage"
+  /> -->
+  </div>
+</div>
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType, computed} from 'vue';
+import {defineComponent, ref, PropType, computed} from 'vue';
 import {SchoolsEntites} from '@/functions/getData';
 
 export default defineComponent({
@@ -20,12 +37,36 @@ export default defineComponent({
   
   components: {},
   name: 'List.vue',
+
   setup(props) {
 
     const schoolsData = computed(() => props.dataSchools)
+    const currentPage = ref(1);
+    const perPage = ref(5);
+
+    const lists = computed(() => {
+      const items = schoolsData.value;
+      return items?.slice(
+        (currentPage.value - 1) * perPage.value,
+        currentPage.value * perPage.value
+      )
+    });
+
+    const setCurrentPage = (pageNumber: number)  => {
+      currentPage.value = (pageNumber)
+    }
+
+    const totalRows = computed(() => schoolsData.value?.length);
+    
+   
 
     return {
       schoolsData,
+      currentPage,
+      perPage,
+      lists,
+      totalRows,
+      setCurrentPage,
     };
   },
 });
