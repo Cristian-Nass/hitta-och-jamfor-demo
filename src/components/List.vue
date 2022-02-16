@@ -1,34 +1,25 @@
 <template>
-  <!-- <div class="parent-grid-div">
-    <div class="child-grid-div" v-for="school in schoolsData" :key="school.id">
-      <img :src="school.Picture" />
-      <div>{{ school.Name }}</div>
-      <div>{{ school.Area }}</div>
-    </div>
-  </div> -->
-
-  <div style="display:flex; flex-direction: column">
-    <div>Somthing</div>
-    <div>Somthing Else</div>
-    
-    <div class="parent-grid-div">
-      <div class="child-grid-div" v-for="list in lists" :key="list.id">
-        <img :src="list.Picture" />
-        <div>{{ list.Name }}</div>
-        <div>{{ list.Area }}</div>
-      </div>
-
-      <div class="page-item pagination-button" style="display: flex">
-        <div class="page-link" style="width: 40px">p</div>
-        <div
-          class="page-link pagination-button"
-          v-for="item in Math.ceil(totalRows / perPage)"
-          :key="item"
-          @click="setCurrentPage(item)">
-          {{ item }}
+  <div>
+    <div style="height: 80vh">
+      <div class="parent-grid-div">
+        <div class="child-grid-div" v-for="list in lists" :key="list.id">
+          <img :src="list.Picture" />
+          <div>{{ list.Name }}</div>
+          <div>{{ list.Area }}</div>
         </div>
-        <div class="page-link pagination-button" style="width: 40px">n</div>
       </div>
+    </div>
+    <div class="page-item pagination-button">
+      <div class="page-link">&lt;&lt;</div>
+      <div
+        class="page-link"
+        v-for="item in Math.ceil(totalRows / perPage)"
+        :key="item"
+        @click="setCurrentPage(item)"
+      >
+        {{ item }}
+      </div>
+      <div class="page-link">&gt;&gt;</div>
     </div>
   </div>
 </template>
@@ -48,7 +39,7 @@ export default defineComponent({
   setup(props) {
     const schoolsData = computed(() => props.dataSchools);
     const currentPage = ref(1);
-    const perPage = ref(8);
+    const perPage = ref(12);
 
     const lists = computed(() => {
       const items = schoolsData.value;
@@ -79,7 +70,7 @@ export default defineComponent({
 <style scoped>
 .parent-grid-div {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 0.5rem;
   max-width: 1400px;
   margin: 0 auto;
@@ -97,9 +88,9 @@ img {
 }
 
 .pagination-button {
-  width: 40px;
-  height: 40px;
   cursor: default;
+  display: flex;
+  justify-content: center;
 }
 
 @media only screen and (max-width: 1200px) {
