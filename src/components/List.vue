@@ -9,19 +9,19 @@
         </div>
       </div>
     </div>
-    <div class="page-item pagination-button">
-      <div class="page-link">&lt;&lt;</div>
-      <div
-        class="page-link"
-        v-for="item in Math.ceil(totalRows / perPage)"
-        :key="item"
-        @click="setCurrentPage(item)"
-      >
-        {{ item }}
+      <div class="page-item pagination-button">
+        <div class="page-link">&lt;&lt;</div>
+        <div
+          class="page-link"
+          v-for="item in Math.ceil(totalRows / perPage)"
+          :key="item"
+          @click="setCurrentPage(item)"
+        >
+          {{ item }}
+        </div>
+        <div class="page-link">&gt;&gt;</div>
       </div>
-      <div class="page-link">&gt;&gt;</div>
     </div>
-  </div>
 </template>
 
 <script lang="ts">
@@ -32,10 +32,8 @@ export default defineComponent({
   props: {
     dataSchools: Array as PropType<SchoolsEntites[]>,
   },
-
   components: {},
-  name: 'List.vue',
-
+  name: 'List',
   setup(props) {
     const schoolsData = computed(() => props.dataSchools);
     const currentPage = ref(1);
@@ -108,6 +106,11 @@ img {
   .parent-grid-div {
     grid-template-columns: 1fr 1fr;
   }
+  .pagination-button {
+    position: fixed;
+    padding-left: 40px;
+}
+
 }
 
 @media only screen and (max-width: 480px) {
