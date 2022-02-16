@@ -19,7 +19,7 @@ export default defineComponent({
   },
   
   components: {},
-  name: 'ListOfDataTiley',
+  name: 'List.vue',
   setup(props) {
 
     const schoolsData = computed(() => props.dataSchools)
@@ -42,7 +42,8 @@ export default defineComponent({
 
 .child-grid-div {
   background-color: bisque;
-  padding: 6px;
+  margin: 4px;
+  padding: 8px;
 }
 
 img {
