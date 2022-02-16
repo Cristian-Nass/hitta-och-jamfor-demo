@@ -13,7 +13,15 @@
     <div v-for="list in lists" :key="list.id">
     {{ list.Name }}
   </div>
-  <button v-for="item in Math.ceil(totalRows/perPage)" :key="item" @click="setCurrentPage(item)">{{item}}</button>
+
+
+  
+  <div class="page-item pagination-button" style="display: flex">
+    <div class="page-link" style="width: 40px">p</div>   
+    <div class="page-link pagination-button" v-for="item in Math.ceil(totalRows/perPage)" :key="item" @click="setCurrentPage(item)">{{item}}</div>   
+    <div class="page-link pagination-button" style="width: 40px">n</div>   
+  </div>
+
 
   
   <!-- <b-pagination
@@ -90,6 +98,11 @@ export default defineComponent({
 img {
   width: 100%;
   height: auto;
+}
+
+.pagination-button {
+  width: 40px;
+  cursor: default;
 }
 
 @media only screen and (max-width: 1200px) {
