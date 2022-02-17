@@ -2,7 +2,7 @@
   <div>
     <div style="height: 80vh">
       <div class="parent-grid-div">
-        <div class="child-grid-div" v-for="list in lists" :key="list.id">
+        <div class="child-grid-div" v-for="list in lists" :key="list.Id" @click="selectedItem(list.Id)">
           <img :src="list.Picture" />
           <div>{{ list.Name }}</div>
           <div>{{ list.Area }}</div>
@@ -10,7 +10,7 @@
       </div>
     </div>
       <div class="page-item pagination-button">
-        <div class="page-link">&lt;&lt;</div>
+        <div class="page-link" @click="previusPage()">&lt;</div>
         <div
           class="page-link"
           v-for="item in Math.ceil(totalRows / perPage)"
@@ -19,7 +19,7 @@
         >
           {{ item }}
         </div>
-        <div class="page-link">&gt;&gt;</div>
+        <div class="page-link" @click="nextPage()">&gt;</div>
       </div>
     </div>
 </template>
@@ -37,7 +37,7 @@ export default defineComponent({
   setup(props) {
     const schoolsData = computed(() => props.dataSchools);
     const currentPage = ref(1);
-    const perPage = ref(12);
+    const perPage = ref(5);
 
     const lists = computed(() => {
       const items = schoolsData.value;
@@ -53,6 +53,23 @@ export default defineComponent({
 
     const totalRows = computed(() => schoolsData.value?.length);
 
+    const selectedItem = (id: number) => {
+      console.log(id);
+    }
+
+    const previusPage = () => {
+      if (currentPage.value !== 1) 
+        currentPage.value --;
+      return;
+    }
+
+    const nextPage = () => {
+      if (currentPage.value <  Math.ceil(totalRows.value as number / perPage.value)) 
+        currentPage.value ++;
+      return;
+    }
+
+
     return {
       schoolsData,
       currentPage,
@@ -60,6 +77,9 @@ export default defineComponent({
       lists,
       totalRows,
       setCurrentPage,
+      selectedItem,
+      previusPage,
+      nextPage
     };
   },
 });
@@ -89,6 +109,7 @@ img {
   cursor: default;
   display: flex;
   justify-content: center;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1200px) {
