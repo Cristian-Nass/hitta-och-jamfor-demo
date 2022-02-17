@@ -16,6 +16,7 @@
           v-for="item in Math.ceil(totalRows / perPage)"
           :key="item"
           @click="setCurrentPage(item)"
+          :style="{backgroundColor: item === currentPage ? '#65c8e1' : '#eeeee4'}"
         >
           {{ item }}
         </div>
